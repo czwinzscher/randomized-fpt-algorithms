@@ -1,0 +1,8 @@
+[package]
+name = "randomized-fpt"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+petgraph = "0.6.3"
+rand = "0.8.5"
