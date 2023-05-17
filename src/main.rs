@@ -1,4 +1,5 @@
 use petgraph::graph::DiGraph;
+use randomized_fpt::color_coding;
 
 fn main() {
     let k = 4;
@@ -19,7 +20,7 @@ fn main() {
         (14, 15),
     ]);
 
-    let res = randomized_fpt::find_simple_path(g, k);
+    let res = color_coding::find_simple_path(g, k);
     if res {
         println!("the graph contains a simple path of length {k}");
     } else {
