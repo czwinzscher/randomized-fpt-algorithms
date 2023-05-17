@@ -3,7 +3,7 @@ use randomized_fpt::color_coding;
 
 fn main() {
     let k = 4;
-    let g = DiGraph::<u32, ()>::from_edges([
+    let g = DiGraph::from_edges([
         (1, 4),
         (1, 12),
         (4, 2),

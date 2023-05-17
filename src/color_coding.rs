@@ -70,3 +70,113 @@ pub fn find_simple_path(mut g: DiGraph<u32, ()>, k: u32) -> bool {
 
     find_colorful_path(&g, k)
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn empty_graph() {
+        let g = DiGraph::new();
+        let res = find_colorful_path(&g, 1);
+        assert!(!res);
+    }
+
+    #[test]
+    fn simple_has_path() {
+        let mut g = DiGraph::new();
+        let n1 = g.add_node(1);
+        let n2 = g.add_node(2);
+        let n3 = g.add_node(1);
+        g.extend_with_edges([(n1, n2), (n1, n3)]);
+        let res = find_colorful_path(&g, 2);
+        assert!(res);
+    }
+
+    #[test]
+    fn simple_no_path() {
+        let mut g = DiGraph::new();
+        let n1 = g.add_node(1);
+        let n2 = g.add_node(1);
+        let n3 = g.add_node(1);
+        g.extend_with_edges([(n1, n2), (n1, n3)]);
+        let res = find_colorful_path(&g, 2);
+        assert!(!res);
+    }
+
+    #[test]
+    fn large_has_path() {
+        let mut g = DiGraph::new();
+        let n1 = g.add_node(1);
+        let n2 = g.add_node(2);
+        let n3 = g.add_node(4);
+        let n4 = g.add_node(3);
+        let n5 = g.add_node(4);
+        let n6 = g.add_node(2);
+        let n7 = g.add_node(1);
+        let n8 = g.add_node(4);
+        let n9 = g.add_node(2);
+        let n10 = g.add_node(3);
+        let n11 = g.add_node(1);
+        let n12 = g.add_node(2);
+        let n13 = g.add_node(3);
+        let n14 = g.add_node(3);
+        let n15 = g.add_node(4);
+        g.extend_with_edges([
+            (n1, n4),
+            (n1, n12),
+            (n4, n2),
+            (n4, n6),
+            (n2, n8),
+            (n2, n3),
+            (n6, n5),
+            (n6, n7),
+            (n12, n10),
+            (n12, n14),
+            (n10, n9),
+            (n10, n11),
+            (n14, n13),
+            (n14, n15),
+        ]);
+        let res = find_colorful_path(&g, 4);
+        assert!(res);
+    }
+
+    #[test]
+    fn large_no_path() {
+        let mut g = DiGraph::new();
+        let n1 = g.add_node(1);
+        let n2 = g.add_node(2);
+        let n3 = g.add_node(4);
+        let n4 = g.add_node(3);
+        let n5 = g.add_node(4);
+        let n6 = g.add_node(2);
+        let n7 = g.add_node(1);
+        let n8 = g.add_node(4);
+        let n9 = g.add_node(2);
+        let n10 = g.add_node(3);
+        let n11 = g.add_node(1);
+        let n12 = g.add_node(2);
+        let n13 = g.add_node(3);
+        let n14 = g.add_node(3);
+        let n15 = g.add_node(4);
+        g.extend_with_edges([
+            (n1, n4),
+            (n1, n12),
+            (n4, n2),
+            (n4, n6),
+            (n2, n8),
+            (n2, n3),
+            (n6, n5),
+            (n6, n7),
+            (n12, n10),
+            (n12, n14),
+            (n10, n9),
+            (n10, n11),
+            (n14, n13),
+            (n14, n15),
+        ]);
+        let res = find_colorful_path(&g, 5);
+        assert!(!res);
+    }
+}
