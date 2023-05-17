@@ -18,6 +18,10 @@ fn find_colorful_path_starting_at(
     k: u32,
     s: NodeIndex,
 ) -> bool {
+    if k == 1 {
+        return true;
+    }
+
     let mut mem = HashMap::new();
     let c = BTreeSet::from([g[s]]);
     let p = HashSet::from([c]);
