@@ -20,7 +20,7 @@ fn main() {
         (14, 15),
     ]);
 
-    let res = color_coding::find_simple_path(g, k);
+    let res = color_coding::find_simple_path(g, k, 5);
     if res {
         println!("the graph contains a simple path of length {k}");
     } else {

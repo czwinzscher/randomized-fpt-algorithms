@@ -65,10 +65,20 @@ fn color_graph(g: &mut DiGraph<u32, ()>, k: u32) {
     g.node_indices().for_each(|i| g[i] = rng.gen_range(1..=k));
 }
 
-pub fn find_simple_path(mut g: DiGraph<u32, ()>, k: u32) -> bool {
-    color_graph(&mut g, k);
+pub fn find_simple_path(
+    mut g: DiGraph<u32, ()>,
+    k: u32,
+    max_repeats: u32,
+) -> bool {
+    for _ in 1..=max_repeats {
+        color_graph(&mut g, k);
 
-    find_colorful_path(&g, k)
+        if find_colorful_path(&g, k) {
+            return true;
+        }
+    }
+
+    false
 }
 
 #[cfg(test)]
