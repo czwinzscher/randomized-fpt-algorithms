@@ -9,7 +9,7 @@ fn apply_reductions(graph: &mut UnGraph<(), ()>, k: i32) -> i32 {
         if !g.neighbors(i).any(|n| n == i) {
             true
         } else {
-            k = k - 1;
+            k -= 1;
             false
         }
     });
@@ -36,7 +36,10 @@ fn apply_reductions(graph: &mut UnGraph<(), ()>, k: i32) -> i32 {
     }
 
     // remove nodes of degree at most 1
-    while let Some(node) = graph.node_indices().find(|&i| graph.neighbors(i).count() <= 1) {
+    while let Some(node) = graph
+        .node_indices()
+        .find(|&i| graph.neighbors(i).count() <= 1)
+    {
         graph.remove_node(node);
     }
 
